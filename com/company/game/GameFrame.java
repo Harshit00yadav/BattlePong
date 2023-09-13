@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
   public GameFrame(GamePanel gamePanel){
-    this.setTitle("UnderExplore");
+    this.setTitle("BattlePong");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
     this.add(gamePanel);
