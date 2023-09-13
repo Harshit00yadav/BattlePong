@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements Runnable{
   private Thread gameThread;
   private KeyHandler keyHandler;
   private final int[] dimentions = new int[]{500, 250};
-  private final int wallsPadding = 20;
+  private final int wallsPadding = 50;
 
   final int FPS = 60;
 

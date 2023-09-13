@@ -14,8 +14,16 @@ public class ScoreArea{
     this.width = width;
     this.height = height;
   }
+
+  public boolean isInside(int x_, int y_){
+    if (x < x_ && x_ < x+width && y < y_ && y_ < y+height){
+      return true;
+    }
+    return false;
+  }
+
   public void draw(Graphics g){
-    g.setColor(Color.ORANGE);
-    g.drawRect(x, y, width, height);
+    g.setColor(new Color(150, 150, 10));
+    g.fillRect(x, y, width, height);
   }
 }

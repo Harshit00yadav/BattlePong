@@ -36,7 +36,7 @@ public class Player extends Entity{
 
   @Override
   public void draw(Graphics g){
-    g.setColor(Color.RED);
+    g.setColor(new Color(150, 150, 10));
     g.fillRect((int)position.x - width/2, (int)position.y - height/2, width, height);
   }
 }

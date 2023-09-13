@@ -19,14 +19,25 @@ public class GameWorld {
   AI ai = new AI();
   Football ball;
   ScoreArea[] scoreAreas;
+  private int scoreAreaWidth = 40;
 
   public GameWorld(int[] dimentions) {
     this.dimentions = dimentions;
-    this.ball = new Football(dimentions[0]/2, dimentions[1]/2, -5, 1);
+    this.ball = new Football(dimentions[0]/2, dimentions[1]/2, -5, 0);
     scoreAreas = new ScoreArea[2];
-    int scoreAreaWidth = 20;
     scoreAreas[0] = new ScoreArea(0, 0, scoreAreaWidth, dimentions[1]);
     scoreAreas[1] = new ScoreArea(dimentions[0] - scoreAreaWidth, 0, scoreAreaWidth, dimentions[1]);
+  }
+
+  public void updateAndReset(){
+    ball.isDistroied = false;
+    ball.position.set(dimentions[0]/2, dimentions[1]/2);
+    ball.velocity.set(-5, 0);
+    for (Entity p : players){
+      p.position.y = dimentions[1]/2;
+    }
+    ball.explosionParticles.clear();
+    ball.restart = false;
   }
 
   public void add(Entity p){
@@ -41,21 +52,18 @@ public class GameWorld {
     if (ball.position.y + ball.velocity.y < 0 || ball.position.y + ball.velocity.y > dimentions[1]){
       ball.velocity.set(new Vector2D(ball.velocity.x, -ball.velocity.y));
     }
+    if (ball.restart){
+      updateAndReset();
+    }
+    for (ScoreArea area : scoreAreas) {
+      if (!ball.isDistroied && area.isInside((int)ball.position.x, (int)ball.position.y)){
+        ball.goBoom();
+      }
+    }
     ball.update(); 
 
     Vector2D futurePos = new Vector2D();
     for (int e=0; e<players.size(); e++){
-      // futurePos.set(players.get(e).position);
-      // 
-      // futurePos.add(players.get(e).velocity.iCap());
-      // if (worldData[((int)(futurePos.y+5))/25][((int)futurePos.x)/25] == '9' || worldData[((int)(futurePos.y+5))/25][((int)(futurePos.x+10))/25] == '9'){
-      //     players.get(e).velocity.x = 0;
-      // }
-      // 
-      // futurePos.add(players.get(e).velocity.jCap());
-      // if (worldData[((int)futurePos.y)/25][((int)(futurePos.x+5))/25] == '9' || worldData[((int)(futurePos.y+10))/25][((int)(futurePos.x+5))/25] == '9'){
-      //     players.get(e).velocity.y = 0;
-      // }
       Entity player = players.get(e);
 
       if (player.isAI == true){
