@@ -23,7 +23,7 @@ public class ScoreArea{
   }
 
   public void draw(Graphics g){
-    g.setColor(new Color(150, 150, 10));
+    g.setColor(Color.DARK_GRAY);
     g.fillRect(x, y, width, height);
   }
 }

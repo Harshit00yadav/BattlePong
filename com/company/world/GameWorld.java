@@ -87,6 +87,15 @@ public class GameWorld {
   }
 
   public void draw(Graphics g){
+    // ----- dotted line ---------
+    g.setColor(Color.DARK_GRAY);
+    int segments = 10;
+    int segmentWidth = 5;
+    int segmentGapping = 5;
+    for (int i=0; i<segments; i++){
+      g.fillRect(dimentions[0]/2-segmentWidth, i*(dimentions[1]/segments), segmentWidth, dimentions[1]/segments - segmentGapping);
+    }
+    // ---------------------------
     ball.draw(g);
     for (int a=0; a<scoreAreas.length; a++){
       scoreAreas[a].draw(g);
