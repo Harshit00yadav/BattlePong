@@ -19,6 +19,7 @@ public class GameWorld {
   AI ai = new AI();
   Football ball;
   ScoreArea[] scoreAreas;
+  private int[] scores = new int[]{0, 0};
   private int scoreAreaWidth = 40;
 
   public GameWorld(int[] dimentions) {
@@ -57,6 +58,11 @@ public class GameWorld {
     }
     for (ScoreArea area : scoreAreas) {
       if (!ball.isDistroied && area.isInside((int)ball.position.x, (int)ball.position.y)){
+        if (ball.velocity.x < 0f){
+          scores[1]++;
+        } else {
+          scores[0]++;
+        }
         ball.goBoom();
       }
     }
@@ -87,6 +93,12 @@ public class GameWorld {
   }
 
   public void draw(Graphics g){
+    // ------- score -------------
+    g.setColor(Color.DARK_GRAY);
+    g.setFont(g.getFont().deriveFont(g.getFont().getSize() * 3.5f));
+    g.drawString(""+scores[0], dimentions[0]/2 - g.getFont().getSize(), g.getFont().getSize());
+    g.drawString(" "+scores[1], dimentions[0]/2, g.getFont().getSize());
+    // ---------------------------
     // ----- dotted line ---------
     g.setColor(Color.DARK_GRAY);
     int segments = 10;
