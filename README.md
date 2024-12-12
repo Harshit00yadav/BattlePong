@@ -11,11 +11,8 @@ a simple ping pong game
 ## How to run :
  + go into the directory
  + ```cd BattlePong```
- + compile all .java files
- + ```javac .\com\company\entites\*.java .\com\company\game\*.java .\com\company\utils\*.java .\com\company\world\*.java -d .\build```
- + run compiled program
- + ```cd .\build```
- + ```java com.company.game.Main```
+ + run the bash file
+ + ```bash BattlePong.sh```
 
 ## Controlls :
  + w -> move up
