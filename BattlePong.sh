@@ -2,11 +2,11 @@
 
 echo "compiling source code"
 echo "making build files"
-javac src/*/*.java -d build/
+javac com/company/*/*.java -d build/
 echo "completed!"
 cd build
 echo "starting application."
-java src.game.Main
+java com.company.game.Main
 echo "cleaning build files."
 cd ..
 rm -rf build/
